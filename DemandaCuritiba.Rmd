@@ -1,0 +1,29 @@
+---
+title: "Leaflet"
+author: "Jean Maia"
+date: "June 27, 2017"
+output: html_document
+---
+## Brazil, Paraná/Curitiba - House Demand per neighborhood
+
+```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library('leaflet')
+```
+```{r}
+md_cities <- data.frame(name = c("Abranches", "Alto Boqueirão", "Atuba", "Bacacheri", "Bairro Alto",
+                                 "Boqueirão", "Cajuru"),
+                        pop = c(260, 2054, 312, 238, 1000,
+                                2342, 2820),
+                        lat = c(-25.3709,-25.5289,-25.3851,-25.4033,-25.4112 ,-25.5128
+                                ,-25.4602 ),
+                        lng = c(-49.2707,-49.2442,-49.2004, -49.2336,-49.2069, -49.2537
+                               ,-49.2132 ))
+
+md_cities %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircles(weight = 1, radius = sqrt(md_cities$pop) * 60)
+
+
+```
+
